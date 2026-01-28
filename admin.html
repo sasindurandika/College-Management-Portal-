@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .welcome-banner {
+            background: linear-gradient(135deg, var(--accent-purple), #8e44ad);
+            color: white;
+            padding: 30px;
+            border-radius: var(--radius);
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        .control-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .system-logs {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        
+        .log-item {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .admin-table .small-btn {
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <nav class="navbar">
+            <div style="display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; width: 100%;">
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <i class="fas fa-user-shield" style="font-size: 1.8rem;"></i>
+                    <h1 style="margin: 0; font-size: 1.8rem;">Admin Dashboard</h1>
+                </div>
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <div style="padding: 8px 16px; background: rgba(255,255,255,0.1); border-radius: 20px;">
+                        <span id="userName">Admin</span>
+                    </div>
+                    <button onclick="logout()" class="btn" style="background: var(--accent-red);">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="dashboard-container">
+            <div class="sidebar">
+                <div style="padding: 0 25px 25px; border-bottom: 1px solid #e0e6ed; margin-bottom: 20px;">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-purple), #8e44ad); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem;">
+                            A
+                        </div>
+                        <div>
+                            <h3 style="margin: 0;">System Administrator</h3>
+                            <p style="color: var(--text-gray); font-size: 0.9rem;">IT Department</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="padding: 0 15px;">
+                    <a href="#" onclick="showSection('overview')" class="menu-item" style="display: flex; align-items: center; gap: 15px; padding: 15px 20px; color: var(--text-gray); text-decoration: none; border-radius: 8px; margin-bottom: 8px;">
+                        <i class="fas fa-tachometer-alt"></i> System Overview
+                    </a>
+                    <a href="#" onclick="showSection('users')" class="menu-item" style="display: flex; align-items: center; gap: 15px; padding: 15px 20px; color: var(--text-gray); text-decoration: none; border-radius: 8px; margin-bottom: 8px;">
+                        <i class="fas fa-users-cog"></i> User Management
+                    </a>
+                    <a href="#" onclick="showSection('reports')" class="menu-item" style="display: flex; align-items: center; gap: 15px; padding: 15px 20px; color: var(--text-gray); text-decoration: none; border-radius: 8px; margin-bottom: 8px;">
+                        <i class="fas fa-chart-bar"></i> Analytics & Reports
+                    </a>
+                    <a href="#" onclick="showSection('settings')" class="menu-item" style="display: flex; align-items: center; gap: 15px; padding: 15px 20px; color: var(--text-gray); text-decoration: none; border-radius: 8px;">
+                        <i class="fas fa-cogs"></i> System Settings
+                    </a>
+                </div>
+            </div>
+            
+            <div class="main-content">
+                <!-- Overview Section -->
+                <div id="overview" class="section">
+                    <div class="welcome-banner">
+                        <h2>System Administration Panel ??</h2>
+                        <p>Monitor and manage the complete college portal system</p>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <i class="fas fa-users fa-2x" style="color: var(--secondary-blue); margin-bottom: 15px;"></i>
+                            <h3>Total Users</h3>
+                            <div class="stat-number">156</div>
+                            <p>120 Students, 25 Teachers, 11 Admins</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-server fa-2x" style="color: var(--accent-green); margin-bottom: 15px;"></i>
+                            <h3>System Status</h3>
+                            <div class="stat-number" style="color: var(--accent-green);">Online</div>
+                            <p>All systems operational</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-database fa-2x" style="color: var(--accent-orange); margin-bottom: 15px;"></i>
+                            <h3>Storage Used</h3>
+                            <div class="stat-number">45%</div>
+                            <p>2.3 GB of 5 GB</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-shield-alt fa-2x" style="color: var(--accent-purple); margin-bottom: 15px;"></i>
+                            <h3>Security Level</h3>
+                            <div class="stat-number">High</div>
+                            <p>Last scan: Today</p>
+                        </div>
+                    </div>
+                    
+                    <div style="background: white; padding: 30px; border-radius: var(--radius); box-shadow: var(--shadow); margin-top: 30px;">
+                        <h3><i class="fas fa-cogs"></i> Quick Actions</h3>
+                        <div class="control-buttons">
+                            <button class="btn" style="background: var(--accent-purple); color: white;" onclick="showSection('users')">
+                                <i class="fas fa-users-cog"></i> Manage Users
+                            </button>
+                            <button class="btn" style="background: var(--secondary-blue); color: white;" onclick="generateReport()">
+                                <i class="fas fa-file-export"></i> Generate Report
+                            </button>
+                            <button class="btn" style="background: var(--accent-green); color: white;" onclick="backupSystem()">
+                                <i class="fas fa-save"></i> Backup System
+                            </button>
+                            <button class="btn" style="background: var(--accent-orange); color: white;" onclick="viewLogs()">
+                                <i class="fas fa-clipboard-list"></i> View Logs
+                            </button>
+                            <button class="btn" style="background: var(--text-gray); color: white;" onclick="showSection('settings')">
+                                <i class="fas fa-sliders-h"></i> System Settings
+                            </button>
+                            <button class="btn" style="background: #2c3e50; color: white;" onclick="databaseTools()">
+                                <i class="fas fa-database"></i> Database Tools
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- User Management Section -->
+                <div id="users" class="section" style="display: none;">
+                    <div style="background: white; padding: 30px; border-radius: var(--radius); box-shadow: var(--shadow);">
+                        <h2><i class="fas fa-users-cog"></i> User Management</h2>
+                        
+                        <div style="display: flex; gap: 15px; margin-bottom: 30px;">
+                            <button class="btn btn-primary" onclick="addUser()">
+                                <i class="fas fa-user-plus"></i> Add New User
+                            </button>
+                            <button class="btn" style="background: var(--accent-orange); color: white;" onclick="bulkUpload()">
+                                <i class="fas fa-file-upload"></i> Bulk Upload
+                            </button>
+                            <button class="btn" style="background: var(--text-gray); color: white;" onclick="exportUsers()">
+                                <i class="fas fa-file-export"></i> Export Users
+                            </button>
+                        </div>
+                        
+                        <table class="data-table admin-table">
+                            <thead>
+                                <tr>
+                                    <th>User ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Department</th>
+                                    <th>Status</th>
+                                    <th>Last Login</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>STU001</td>
+                                    <td>John Doe</td>
+                                    <td>john.doe@college.edu</td>
+                                    <td>Student</td>
+                                    <td>Computer Science</td>
+                                    <td><span style="padding: 4px 10px; background: #d4edda; color: #155724; border-radius: 12px; font-size: 0.8rem;">Active</span></td>
+                                    <td>Today, 10:30 AM</td>
+                                    <td>
+                                        <button class="small-btn" style="background: var(--secondary-blue); color: white;">Edit</button>
+                                        <button class="small-btn" style="background: var(--accent-red); color: white;">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>TCH001</td>
+                                    <td>Dr. Sarah Wilson</td>
+                                    <td>sarah.wilson@college.edu</td>
+                                    <td>Teacher</td>
+                                    <td>Mathematics</td>
+                                    <td><span style="padding: 4px 10px; background: #d4edda; color: #155724; border-radius: 12px; font-size: 0.8rem;">Active</span></td>
+                                    <td>Yesterday, 3:15 PM</td>
+                                    <td>
+                                        <button class="small-btn" style="background: var(--secondary-blue); color: white;">Edit</button>
+                                        <button class="small-btn" style="background: var(--accent-red); color: white;">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>ADM001</td>
+                                    <td>Robert Chen</td>
+                                    <td>robert.chen@college.edu</td>
+                                    <td>Admin</td>
+                                    <td>IT Department</td>
+                                    <td><span style="padding: 4px 10px; background: #d4edda; color: #155724; border-radius: 12px; font-size: 0.8rem;">Active</span></td>
+                                    <td>Today, 9:00 AM</td>
+                                    <td>
+                                        <button class="small-btn" style="background: var(--secondary-blue); color: white;">Edit</button>
+                                        <button class="small-btn" style="background: var(--accent-red); color: white;">Delete</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- System Settings Section -->
+                <div id="settings" class="section" style="display: none;">
+                    <div style="background: white; padding: 30px; border-radius: var(--radius); box-shadow: var(--shadow);">
+                        <h2><i class="fas fa-cogs"></i> System Settings</h2>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px;">
+                            <div>
+                                <h3><i class="fas fa-shield-alt"></i> Security Settings</h3>
+                                <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-top: 15px;">
+                                    <label style="display: block; margin-bottom: 10px;">
+                                        <input type="checkbox" checked> Enable Two-Factor Authentication
+                                    </label>
+                                    <label style="display: block; margin-bottom: 10px;">
+                                        <input type="checkbox" checked> Session Timeout (30 min)
+                                    </label>
+                                    <label style="display: block; margin-bottom: 10px;">
+                                        <input type="checkbox"> Force Password Reset Every 90 Days
+                                    </label>
+                                    <button class="btn btn-primary" style="margin-top: 15px;">Save Security Settings</button>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h3><i class="fas fa-bell"></i> Notification Settings</h3>
+                                <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-top: 15px;">
+                                    <label style="display: block; margin-bottom: 10px;">
+                                        <input type="checkbox" checked> Email Notifications
+                                    </label>
+                                    <label style="display: block; margin-bottom: 10px;">
+                                        <input type="checkbox"> SMS Notifications
+                                    </label>
+                                    <label style="display: block; margin-bottom: 10px;">
+                                        <input type="checkbox" checked> System Announcements
+                                    </label>
+                                    <button class="btn btn-primary" style="margin-top: 15px;">Save Notification Settings</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- System Logs -->
+                <div style="background: white; padding: 30px; border-radius: var(--radius); box-shadow: var(--shadow); margin-top: 30px;">
+                    <h3><i class="fas fa-clipboard-list"></i> Recent System Activity</h3>
+                    <div class="system-logs">
+                        <div class="log-item">[2024-01-15 10:30:15] User 'teacher' logged in from IP: 192.168.1.100</div>
+                        <div class="log-item">[2024-01-15 10:15:42] Student 'student' submitted assignment MATH_ASG_003</div>
+                        <div class="log-item">[2024-01-15 09:45:18] System backup completed successfully (Size: 2.3GB)</div>
+                        <div class="log-item">[2024-01-15 09:30:05] New user account created: 'new_student'</div>
+                        <div class="log-item">[2024-01-15 09:15:33] Database maintenance performed (Optimization complete)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check login
+        if (sessionStorage.getItem('userRole') !== 'admin') {
+            window.location.href = 'login.html?role=admin';
+        }
+        
+        // Show user name
+        document.getElementById('userName').textContent = sessionStorage.getItem('username') || 'Admin';
+        
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).style.display = 'block';
+            
+            // Update active menu
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.style.background = 'none';
+                item.style.color = 'var(--text-gray)';
+            });
+            event.target.style.background = 'linear-gradient(135deg, rgba(155, 89, 182, 0.1), rgba(52, 73, 94, 0.1))';
+            event.target.style.color = 'var(--accent-purple)';
+        }
+        
+        function addUser() {
+            alert('Add user form would open here');
+        }
+        
+        function generateReport() {
+            alert('Report generation started. PDF will be downloaded shortly.');
+        }
+        
+        function backupSystem() {
+            alert('System backup initiated. This may take a few minutes.');
+        }
+        
+        function viewLogs() {
+            alert('Opening system logs viewer...');
+        }
+        
+        function databaseTools() {
+            alert('Opening database management tools...');
+        }
+        
+        function bulkUpload() {
+            alert('Bulk user upload dialog opened');
+        }
+        
+        function exportUsers() {
+            alert('User list exported to CSV file');
+        }
+        
+        function logout() {
+            sessionStorage.clear();
+            window.location.href = 'index.html';
+        }
+        
+        // Show overview by default
+        showSection('overview');
+    </script>
+</body>
+</html>

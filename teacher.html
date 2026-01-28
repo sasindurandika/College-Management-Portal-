@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .welcome-banner {
+            background: linear-gradient(135deg, var(--accent-orange), #d35400);
+            color: white;
+            padding: 30px;
+            border-radius: var(--radius);
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .upload-box {
+            background: white;
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-top: 20px;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        
+        .student-list {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <nav class="navbar">
+            <div style="display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; width: 100%;">
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <i class="fas fa-chalkboard-teacher" style="font-size: 1.8rem;"></i>
+                    <h1 style="margin: 0; font-size: 1.8rem;">Teacher Dashboard</h1>
+                </div>
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <div style="padding: 8px 16px; background: rgba(255,255,255,0.1); border-radius: 20px;">
+                        <span id="userName">Teacher</span>
+                    </div>
+                    <button onclick="logout()" class="btn" style="background: var(--accent-red);">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="dashboard-container">
+            <div class="sidebar">
+                <div style="padding: 0 25px 25px; border-bottom: 1px solid #e0e6ed; margin-bottom: 20px;">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-orange), #d35400); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem;">
+                            T
+                        </div>
+                        <div>
+                            <h3 style="margin: 0;">Dr. Sarah Wilson</h3>
+                            <p style="color: var(--text-gray); font-size: 0.9rem;">Mathematics Department</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="padding: 0 15px;">
+                    <a href="#" onclick="showSection('overview')" class="menu-item" style="display: flex; align-items: center; gap: 15px; padding: 15px 20px; color: var(--text-gray); text-decoration: none; border-radius: 8px; margin-bottom: 8px;">
+                        <i class="fas fa-tachometer-alt"></i> Overview
+                    </a>
+                    <a href="#" onclick="showSection('materials')" class="menu-item" style="display: flex; align-items: center; gap: 15px; padding: 15px 20px; color: var(--text-gray); text-decoration: none; border-radius: 8px; margin-bottom: 8px;">
+                        <i class="fas fa-cloud-upload-alt"></i> Upload Materials
+                    </a>
+                    <a href="#" onclick="showSection('assignments')" class="menu-item" style="display: flex; align-items: center; gap: 15px; padding: 15px 20px; color: var(--text-gray); text-decoration: none; border-radius: 8px; margin-bottom: 8px;">
+                        <i class="fas fa-tasks"></i> Manage Assignments
+                    </a>
+                    <a href="#" onclick="showSection('marks')" class="menu-item" style="display: flex; align-items: center; gap: 15px; padding: 15px 20px; color: var(--text-gray); text-decoration: none; border-radius: 8px; margin-bottom: 8px;">
+                        <i class="fas fa-chart-line"></i> Grade Students
+                    </a>
+                    <a href="#" onclick="showSection('students')" class="menu-item" style="display: flex; align-items: center; gap: 15px; padding: 15px 20px; color: var(--text-gray); text-decoration: none; border-radius: 8px;">
+                        <i class="fas fa-users"></i> Student Roster
+                    </a>
+                </div>
+            </div>
+            
+            <div class="main-content">
+                <!-- Overview Section -->
+                <div id="overview" class="section">
+                    <div class="welcome-banner">
+                        <h2>Welcome, Dr. Wilson! ?????</h2>
+                        <p>Manage your courses and track student progress</p>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <i class="fas fa-users fa-2x" style="color: var(--secondary-blue); margin-bottom: 15px;"></i>
+                            <h3>Total Students</h3>
+                            <div class="stat-number">45</div>
+                            <p>In your classes</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-tasks fa-2x" style="color: var(--accent-green); margin-bottom: 15px;"></i>
+                            <h3>To Grade</h3>
+                            <div class="stat-number">12</div>
+                            <p>Assignments pending</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-book fa-2x" style="color: var(--accent-orange); margin-bottom: 15px;"></i>
+                            <h3>Materials</h3>
+                            <div class="stat-number">8</div>
+                            <p>Uploaded this month</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-chart-line fa-2x" style="color: var(--accent-purple); margin-bottom: 15px;"></i>
+                            <h3>Avg. Score</h3>
+                            <div class="stat-number">78%</div>
+                            <p>Class average</p>
+                        </div>
+                    </div>
+                    
+                    <div style="background: white; padding: 30px; border-radius: var(--radius); box-shadow: var(--shadow);">
+                        <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+                        <div class="action-buttons">
+                            <button class="btn btn-primary" onclick="showSection('materials')">
+                                <i class="fas fa-cloud-upload-alt"></i> Upload New Material
+                            </button>
+                            <button class="btn" style="background: var(--accent-green); color: white;" onclick="showSection('assignments')">
+                                <i class="fas fa-plus-circle"></i> Create Assignment
+                            </button>
+                            <button class="btn" style="background: var(--accent-purple); color: white;" onclick="showSection('marks')">
+                                <i class="fas fa-chart-bar"></i> Enter Grades
+                            </button>
+                            <button class="btn" style="background: var(--text-gray); color: white;" onclick="postAnnouncement()">
+                                <i class="fas fa-bullhorn"></i> Post Announcement
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Upload Materials Section -->
+                <div id="materials" class="section" style="display: none;">
+                    <div style="background: white; padding: 30px; border-radius: var(--radius); box-shadow: var(--shadow);">
+                        <h2><i class="fas fa-cloud-upload-alt"></i> Upload Study Materials</h2>
+                        
+                        <div class="upload-box">
+                            <input type="text" id="materialTitle" placeholder="Material Title" class="input-field">
+                            <select id="materialSubject" class="input-field">
+                                <option value="">Select Subject</option>
+                                <option value="math">Mathematics</option>
+                                <option value="cs">Computer Science</option>
+                                <option value="physics">Physics</option>
+                            </select>
+                            <textarea id="materialDesc" placeholder="Description" class="input-field" rows="3"></textarea>
+                            <input type="file" id="materialFile" class="input-field">
+                            <button onclick="uploadMaterial()" class="btn btn-primary" style="width: 100%; margin-top: 20px;">
+                                <i class="fas fa-upload"></i> Upload Material
+                            </button>
+                        </div>
+                        
+                        <h3 style="margin-top: 40px;"><i class="fas fa-history"></i> Recently Uploaded</h3>
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-top: 20px;">
+                            <p><strong>Calculus Chapter 5 Notes</strong> - Mathematics • Uploaded: Today</p>
+                            <p><strong>Database Design Guide</strong> - Computer Science • Uploaded: Yesterday</p>
+                            <p><strong>Quantum Physics Problems</strong> - Physics • Uploaded: 2 days ago</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Grade Students Section -->
+                <div id="marks" class="section" style="display: none;">
+                    <div style="background: white; padding: 30px; border-radius: var(--radius); box-shadow: var(--shadow);">
+                        <h2><i class="fas fa-chart-line"></i> Grade Students</h2>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px;">
+                            <div>
+                                <h3><i class="fas fa-user-graduate"></i> Enter Marks</h3>
+                                <select id="studentSelect" class="input-field">
+                                    <option value="">Select Student</option>
+                                    <option value="john">John Doe (STU001)</option>
+                                    <option value="sarah">Sarah Smith (STU002)</option>
+                                    <option value="alex">Alex Johnson (STU003)</option>
+                                </select>
+                                <select id="subjectSelect" class="input-field">
+                                    <option value="">Select Subject</option>
+                                    <option value="math">Mathematics</option>
+                                    <option value="cs">Computer Science</option>
+                                </select>
+                                <input type="number" id="marksInput" placeholder="Marks (0-100)" class="input-field">
+                                <input type="text" id="feedbackInput" placeholder="Feedback" class="input-field">
+                                <button onclick="saveMarks()" class="btn btn-primary" style="width: 100%;">
+                                    <i class="fas fa-save"></i> Save Grades
+                                </button>
+                            </div>
+                            
+                            <div>
+                                <h3><i class="fas fa-list-alt"></i> Recent Grades</h3>
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Student</th>
+                                            <th>Subject</th>
+                                            <th>Marks</th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>John Doe</td>
+                                            <td>Mathematics</td>
+                                            <td>85/100</td>
+                                            <td>Dec 10</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sarah Smith</td>
+                                            <td>Computer Science</td>
+                                            <td>92/100</td>
+                                            <td>Dec 9</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Student Roster Section -->
+                <div id="students" class="section" style="display: none;">
+                    <div style="background: white; padding: 30px; border-radius: var(--radius); box-shadow: var(--shadow);">
+                        <h2><i class="fas fa-users"></i> Student Roster</h2>
+                        
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Student ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Course</th>
+                                    <th>Attendance</th>
+                                    <th>Avg. Grade</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>STU001</td>
+                                    <td>John Doe</td>
+                                    <td>john.doe@college.edu</td>
+                                    <td>Computer Science</td>
+                                    <td>95%</td>
+                                    <td>88%</td>
+                                    <td>
+                                        <button class="btn" style="padding: 5px 10px; font-size: 0.8rem;">View</button>
+                                        <button class="btn" style="padding: 5px 10px; font-size: 0.8rem; background: var(--accent-green); color: white;">Message</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>STU002</td>
+                                    <td>Sarah Smith</td>
+                                    <td>sarah.smith@college.edu</td>
+                                    <td>Mathematics</td>
+                                    <td>92%</td>
+                                    <td>85%</td>
+                                    <td>
+                                        <button class="btn" style="padding: 5px 10px; font-size: 0.8rem;">View</button>
+                                        <button class="btn" style="padding: 5px 10px; font-size: 0.8rem; background: var(--accent-green); color: white;">Message</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>STU003</td>
+                                    <td>Alex Johnson</td>
+                                    <td>alex.johnson@college.edu</td>
+                                    <td>Physics</td>
+                                    <td>88%</td>
+                                    <td>90%</td>
+                                    <td>
+                                        <button class="btn" style="padding: 5px 10px; font-size: 0.8rem;">View</button>
+                                        <button class="btn" style="padding: 5px 10px; font-size: 0.8rem; background: var(--accent-green); color: white;">Message</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check login
+        if (sessionStorage.getItem('userRole') !== 'teacher') {
+            window.location.href = 'login.html?role=teacher';
+        }
+        
+        // Show user name
+        document.getElementById('userName').textContent = sessionStorage.getItem('username') || 'Teacher';
+        
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).style.display = 'block';
+            
+            // Update active menu
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.style.background = 'none';
+                item.style.color = 'var(--text-gray)';
+            });
+            event.target.style.background = 'linear-gradient(135deg, rgba(230, 126, 34, 0.1), rgba(231, 76, 60, 0.1))';
+            event.target.style.color = 'var(--accent-orange)';
+        }
+        
+        function uploadMaterial() {
+            const title = document.getElementById('materialTitle').value;
+            if (title) {
+                alert('Material "' + title + '" uploaded successfully!');
+                document.getElementById('materialTitle').value = '';
+                document.getElementById('materialSubject').value = '';
+                document.getElementById('materialDesc').value = '';
+            } else {
+                alert('Please enter a title');
+            }
+        }
+        
+        function saveMarks() {
+            const student = document.getElementById('studentSelect').value;
+            const marks = document.getElementById('marksInput').value;
+            
+            if (student && marks) {
+                alert('Marks saved successfully!');
+                document.getElementById('studentSelect').value = '';
+                document.getElementById('subjectSelect').value = '';
+                document.getElementById('marksInput').value = '';
+                document.getElementById('feedbackInput').value = '';
+            } else {
+                alert('Please select student and enter marks');
+            }
+        }
+        
+        function postAnnouncement() {
+            const announcement = prompt('Enter your announcement:');
+            if (announcement) {
+                alert('Announcement posted!');
+            }
+        }
+        
+        function logout() {
+            sessionStorage.clear();
+            window.location.href = 'index.html';
+        }
+        
+        // Show overview by default
+        showSection('overview');
+    </script>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: #f5f7fa;
+            min-height: 100vh;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .navbar h1 {
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logout-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+        
+        .welcome-banner {
+            background: linear-gradient(135deg, #3498db, #27ae60);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+            border-top: 4px solid #3498db;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #3498db;
+            margin: 15px 0;
+        }
+        
+        .content-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 5px;
+        }
+        
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #2980b9;
+        }
+        
+        .btn-success {
+            background: #27ae60;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <h1><i class="fas fa-graduation-cap"></i> Student Dashboard</h1>
+        <div class="user-info">
+            <span id="userName">Student</span>
+            <button onclick="logout()" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+    </nav>
+    
+    <div class="container" id="dashboardContent">
+        <div class="welcome-banner">
+            <h2>Welcome back, <span id="welcomeName">Student</span>! ??</h2>
+            <p>Here's your academic overview for this semester</p>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <i class="fas fa-tasks fa-2x" style="color: #3498db;"></i>
+                <h3>Pending Assignments</h3>
+                <div class="stat-number">3</div>
+                <p>Due this week</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-book fa-2x" style="color: #27ae60;"></i>
+                <h3>Study Materials</h3>
+                <div class="stat-number">15</div>
+                <p>Available now</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-chart-line fa-2x" style="color: #e67e22;"></i>
+                <h3>Average Grade</h3>
+                <div class="stat-number">85%</div>
+                <p>Current semester</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-calendar-check fa-2x" style="color: #9b59b6;"></i>
+                <h3>Attendance</h3>
+                <div class="stat-number">92%</div>
+                <p>This month</p>
+            </div>
+        </div>
+        
+        <div class="content-card">
+            <h3><i class="fas fa-bullhorn"></i> Recent Announcements</h3>
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #3498db;">
+                <h4>?? Math Class Update</h4>
+                <p>New chapter materials for Calculus have been uploaded. Please download before next class.</p>
+                <p style="color: #7f8c8d; font-size: 0.9rem; margin-top: 10px;"><i class="fas fa-clock"></i> 2 hours ago</p>
+            </div>
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #27ae60;">
+                <h4>?? Assignment Deadline Extended</h4>
+                <p>The submission deadline for Database Systems project has been extended to Friday.</p>
+                <p style="color: #7f8c8d; font-size: 0.9rem; margin-top: 10px;"><i class="fas fa-clock"></i> 1 day ago</p>
+            </div>
+        </div>
+        
+        <div class="content-card">
+            <h3><i class="fas fa-tasks"></i> Quick Actions</h3>
+            <button class="btn btn-primary" onclick="viewMaterials()">
+                <i class="fas fa-book"></i> View Study Materials
+            </button>
+            <button class="btn btn-success" onclick="submitAssignment()">
+                <i class="fas fa-upload"></i> Submit Assignment
+            </button>
+            <button class="btn" style="background: #9b59b6; color: white;" onclick="viewGrades()">
+                <i class="fas fa-chart-line"></i> View Grades
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Check if user is logged in as student
+        const userRole = sessionStorage.getItem('userRole');
+        const username = sessionStorage.getItem('username');
+        
+        if (userRole !== 'student' || !username) {
+            // Redirect to login if not logged in or not a student
+            window.location.href = 'login.html?role=student';
+        } else {
+            // Display user info
+            document.getElementById('userName').textContent = username;
+            document.getElementById('welcomeName').textContent = username === 'student' ? 'Alex' : username;
+            
+            // Show welcome message
+            setTimeout(() => {
+                alert(`Welcome ${username === 'student' ? 'Alex Johnson' : username}! You have successfully logged in as a Student.`);
+            }, 500);
+        }
+        
+        function logout() {
+            // Clear session data
+            sessionStorage.clear();
+            // Redirect to home page
+            window.location.href = 'index.html';
+        }
+        
+        function viewMaterials() {
+            alert('Opening study materials...');
+        }
+        
+        function submitAssignment() {
+            alert('Opening assignment submission...');
+        }
+        
+        function viewGrades() {
+            alert('Opening grades dashboard...');
+        }
+        
+        // Auto-logout after 30 minutes (for security)
+        setTimeout(() => {
+            sessionStorage.clear();
+            alert('Your session has expired. Please login again.');
+            window.location.href = 'login.html';
+        }, 30 * 60 * 1000);
+    </script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</body>
+</html>
